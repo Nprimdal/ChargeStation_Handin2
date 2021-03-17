@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ChargeStation_Handin2.Disp
 {
-    interface IDisplay
+    public interface IDisplay
     {
 
         public string Print();
