@@ -6,5 +6,6 @@ namespace ChargeStation_Handin2
 {
     public interface IRFIDReader
     {
+        public int RFIDCard();
     }
 }
