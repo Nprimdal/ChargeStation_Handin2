@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ChargeStation_Handin2
 {
-    public interface IDoor
+    public interface IRFIDReader
     {
     }
 }
