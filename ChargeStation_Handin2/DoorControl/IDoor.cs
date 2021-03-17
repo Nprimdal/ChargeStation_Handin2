@@ -6,5 +6,8 @@ namespace ChargeStation_Handin2
 {
     public interface IDoor
     {
+        public void LockDoor();
+
+        public void UnlockDoor();
     }
 }
