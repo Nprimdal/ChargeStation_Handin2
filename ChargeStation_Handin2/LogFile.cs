@@ -4,7 +4,16 @@ using System.Text;
 
 namespace ChargeStation_Handin2
 {
-    class LogFile
+    public class LogFile : ILogFile
     {
+        public void LogDoorLocked(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LogDoorUnlocked(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
