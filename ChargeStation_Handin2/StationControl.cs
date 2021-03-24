@@ -110,7 +110,7 @@ namespace ChargeStation_Handin2
                 case LadeskabState.DoorOpen:
                     if (e.DoorState == true)
                     {
-                        _display.print("Tilslut telefon");
+                        _display.Print("Tilslut telefon");
                         _charger.IsConnected();
                         _state = LadeskabState.Locked;
                     }
@@ -118,7 +118,7 @@ namespace ChargeStation_Handin2
                 case LadeskabState.Locked:
                     if (e.DoorState == false)
                     {
-                        _display.print("Indlæs RFID");
+                        _display.Print("Indlæs RFID");
                     }
                     break;
             }
