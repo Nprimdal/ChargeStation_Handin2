@@ -6,10 +6,6 @@ namespace ChargeStation_Handin2.RFID
 {
     public class RFIEDEventArgs
     {
-        public int RFID
-        {
-            get;
-            set;
-        }
+        public int RFID { get; set; }
     }
 }
