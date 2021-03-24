@@ -6,9 +6,9 @@ namespace ChargeStation_Handin2.Disp
 {
     class Display : IDisplay
     {
-        public string Print()
+        public string Print(string message)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(message);
         }
     }
 }
