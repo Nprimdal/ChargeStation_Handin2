@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChargeStation_Handin2.Disp;
 using ChargeStation_Handin2.DoorControl;
 using ChargeStation_Handin2.RFID;
 
@@ -25,6 +26,7 @@ namespace ChargeStation_Handin2
         private int _oldId;
         private IDoor _door;
         private IRFIDReader _rfidReader;
+        private Display _display;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
@@ -32,9 +34,12 @@ namespace ChargeStation_Handin2
         public StationControl()
         {
             _door = new Door();
+            _display = new Display();
             _charger = new ChargeControl();
             _rfidReader = new RFIEDReader(); 
             _state = LadeskabState.Available;
+            _door.DoorStateChangedEvent += DoorOpen;
+            _door.DoorStateChangedEvent += DoorClosed;
             _rfidReader.RFIDChangedEvent += RfidDetected;
 
         }
@@ -98,9 +103,25 @@ namespace ChargeStation_Handin2
 
         }
 
-        private void DoorOpen(object o, EventArgs e)
+        private void DoorOpen(object o, DoorEventArgs e)
         {
-
+            switch (_state)
+            {
+                case LadeskabState.DoorOpen:
+                    if (e.DoorState == true)
+                    {
+                        _display.print("Tilslut telefon");
+                        _charger.IsConnected();
+                        _state = LadeskabState.Locked;
+                    }
+                    break;
+                case LadeskabState.Locked:
+                    if (e.DoorState == false)
+                    {
+                        _display.print("Indlæs RFID");
+                    }
+                    break;
+            }
         }
         // Her mangler de andre trigger handlere
     }
