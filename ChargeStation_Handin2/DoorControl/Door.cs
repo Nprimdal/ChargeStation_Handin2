@@ -4,16 +4,29 @@ using System.Text;
 
 namespace ChargeStation_Handin2.DoorControl
 {
-    class Door : IDoor
+    public class Door : IDoor
     {
+        public event EventHandler<DoorEventArgs> DoorStateChangedEvent;
+
         public void LockDoor()
         {
-            throw new NotImplementedException();
+            OnDoorClosed(new DoorEventArgs(){DoorState = false});
         }
 
         public void UnlockDoor()
         {
-            throw new NotImplementedException();
+            OnDoorOpen(new DoorEventArgs(){DoorState = true});
         }
+
+        public void OnDoorOpen(DoorEventArgs e)
+        {
+            DoorStateChangedEvent?.Invoke(this,e);
+        }
+
+        public void OnDoorClosed(DoorEventArgs e)
+        {
+            DoorStateChangedEvent?.Invoke(this, e);
+        }
+
     }
 }
