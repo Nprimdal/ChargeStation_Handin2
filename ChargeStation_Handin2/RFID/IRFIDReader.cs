@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChargeStation_Handin2
+namespace ChargeStation_Handin2.RFID
 {
     public interface IRFIDReader
     {
-        public int RFIDCard();
+        event EventHandler<int> RFIDChangedEvent;
+        void OnRfidRead(int id);
+
     }
 }

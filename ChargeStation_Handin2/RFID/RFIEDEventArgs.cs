@@ -4,8 +4,12 @@ using System.Text;
 
 namespace ChargeStation_Handin2.RFID
 {
-    class RFIEDEventArgs
+    public class RFIEDEventArgs
     {
-        public int RFID { get; set; }
+        public int RFID
+        {
+            get;
+            set;
+        }
     }
 }

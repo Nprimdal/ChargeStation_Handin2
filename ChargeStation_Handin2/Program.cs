@@ -1,9 +1,14 @@
 ﻿    using System;
+    using ChargeStation_Handin2;
+    using ChargeStation_Handin2.DoorControl;
+    using ChargeStation_Handin2.RFID;
 
     class Program
     {
         static void Main(string[] args)
         {
+            IDoor door = new Door();
+            IRFIDReader rfidReader = new RFIEDReader();
 				// Assemble your system here from all the classes
 
             bool finish = false;
@@ -21,7 +26,7 @@
                         break;
 
                     case 'O':
-                        door.OnDoorOpen();
+                        door.OnDoorClose();
                         break;
 
                     case 'C':
@@ -29,8 +34,8 @@
                         break;
 
                     case 'R':
-                        System.Console.WriteLine("Indtast RFID id: ");
-                        string idString = System.Console.ReadLine();
+                        Console.WriteLine("Indtast RFID id: ");
+                        string idString = Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
                         rfidReader.OnRfidRead(id);
@@ -43,4 +48,4 @@
             } while (!finish);
         }
     }
-}
+
