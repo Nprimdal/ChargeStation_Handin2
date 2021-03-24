@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChargeStation_Handin2.DoorControl;
+using ChargeStation_Handin2.RFID;
 
 namespace ChargeStation_Handin2
 {
@@ -22,13 +24,23 @@ namespace ChargeStation_Handin2
         private IChargeControl _charger;
         private int _oldId;
         private IDoor _door;
+        private IRFIDReader _rfidReader;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         // Her mangler constructor
+        public StationControl()
+        {
+            _door = new Door();
+            _charger = new ChargeControl();
+            _rfidReader = new RFIEDReader(); 
+            _state = LadeskabState.Available;
+            _rfidReader.RFIDChangedEvent += RfidDetected;
+
+        }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(int id)
+        private void RfidDetected(object o, int id)
         {
             switch (_state)
             {
@@ -81,6 +93,15 @@ namespace ChargeStation_Handin2
             }
         }
 
+        private void DoorClosed(object o, EventArgs e)
+        {
+
+        }
+
+        private void DoorOpen(object o, EventArgs e)
+        {
+
+        }
         // Her mangler de andre trigger handlere
     }
 }

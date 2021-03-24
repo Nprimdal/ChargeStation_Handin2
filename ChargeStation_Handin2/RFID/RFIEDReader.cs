@@ -6,9 +6,11 @@ namespace ChargeStation_Handin2.RFID
 {
     class RFIEDReader : IRFIDReader
     {
-        public int RFIDCard()
+        public event EventHandler<RFIEDEventArgs> RFIDChangedEvent;
+
+        public void OnRfidRead(int id)
         {
-            throw new NotImplementedException();
+            RFIDChangedEvent?.Invoke(this, new RFIEDEventArgs() {RFID =  id});
         }
     }
 }
