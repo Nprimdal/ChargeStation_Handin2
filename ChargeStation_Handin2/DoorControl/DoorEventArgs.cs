@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ChargeStation_Handin2.DoorControl
 {
-    class DoorEventArgs
+    public class DoorEventArgs: EventArgs
     {
         public bool DoorState { get; set; }
     }

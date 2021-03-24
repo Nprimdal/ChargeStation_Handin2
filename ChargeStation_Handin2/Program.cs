@@ -1,4 +1,7 @@
 ﻿    using System;
+    using System.Security.Cryptography.X509Certificates;
+    using ChargeStation_Handin2;
+    using ChargeStation_Handin2.DoorControl;
 
     class Program
     {
@@ -6,7 +9,7 @@
         {
 				// Assemble your system here from all the classes
 
-            bool finish = false;
+                bool finish = false;
             do
             {
                 string input;
