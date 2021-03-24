@@ -7,7 +7,7 @@ namespace ChargeStation_Handin2.Disp
     public interface IDisplay
     {
 
-        string Print(string message);
+        void Print(string message);
 
     }
 }

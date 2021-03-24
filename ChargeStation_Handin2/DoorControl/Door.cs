@@ -10,22 +10,22 @@ namespace ChargeStation_Handin2.DoorControl
 
         public void LockDoor()
         {
-            OnDoorClosed(new DoorEventArgs(){DoorState = false});
+            OnDoorClosed();
         }
 
         public void UnlockDoor()
         {
-            OnDoorOpen(new DoorEventArgs(){DoorState = true});
+            OnDoorOpen();
         }
 
-        public void OnDoorOpen(DoorEventArgs e)
+        public void OnDoorOpen()
         {
-            DoorStateChangedEvent?.Invoke(this,e);
+            DoorStateChangedEvent?.Invoke(this, new DoorEventArgs() {DoorState = true});
         }
 
-        public void OnDoorClosed(DoorEventArgs e)
+        public void OnDoorClosed()
         {
-            DoorStateChangedEvent?.Invoke(this, e);
+            DoorStateChangedEvent?.Invoke(this, new DoorEventArgs(){DoorState = false});
         }
 
     }
