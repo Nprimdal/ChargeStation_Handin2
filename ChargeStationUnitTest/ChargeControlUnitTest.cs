@@ -107,7 +107,6 @@ namespace ChargeStationUnitTest
         {
             _usbCharger.CurrentValueEvent += Raise.EventWith(new CurrentEventArgs {Current = current});
             _display.DidNotReceive().Print("Telefonen er fuldt opladet");
-
         }
 
         [TestCase(5)] 

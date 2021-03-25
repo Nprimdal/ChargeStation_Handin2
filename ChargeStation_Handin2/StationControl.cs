@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ChargeStation_Handin2.Disp;
 using ChargeStation_Handin2.DoorControl;
 using ChargeStation_Handin2.RFID;
+using ChargeStation_Handin2.Logging;
 
 namespace ChargeStation_Handin2
 {
@@ -29,12 +30,14 @@ namespace ChargeStation_Handin2
         private Display _display;
         private IUsbCharger _usbCharger;
         private ILogFile _file;
+        private IDateTimeLog _dateTimeLog;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         public StationControl()
         {
-            _file = new LogFile(logFile);
+            _dateTimeLog = new DateTimeLogLog();
+            _file = new LogFile(logFile, _dateTimeLog);
             _usbCharger = new UsbChargerSimulator();
             _door = new Door();
             _display = new Display();
