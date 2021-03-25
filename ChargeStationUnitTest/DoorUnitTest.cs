@@ -60,5 +60,18 @@ namespace ChargeStationUnitTest
             _uut.UnlockDoor();
             Assert.That(_uut.DoorLock, Is.EqualTo(false));
         }
+        [Test]
+        public void LockDoor_DoorOpenIsFalse()
+        {
+            _uut.LockDoor();
+            Assert.That(_uut.DoorOpen, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void UnlockDoor_DoorOpenIsTrue()
+        {
+            _uut.UnlockDoor();
+            Assert.That(_uut.DoorOpen, Is.EqualTo(true));
+        }
     }
 }
