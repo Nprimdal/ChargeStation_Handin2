@@ -7,7 +7,7 @@ using ChargeStation_Handin2.Logging;
 using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
-using DateTime = System.DateTime;
+
 
 namespace ChargeStationUnitTest
 {
