@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ChargeStation_Handin2.Disp;
 using ChargeStation_Handin2.DoorControl;
 using ChargeStation_Handin2.RFID;
+using ChargeStation_Handin2.Logging;
 
 namespace ChargeStation_Handin2
 {
