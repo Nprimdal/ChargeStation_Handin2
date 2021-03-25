@@ -7,7 +7,7 @@ namespace ChargeStation_Handin2.RFID
     public interface IRFIDReader
     {
         event EventHandler<RFIEDEventArgs> RFIDChangedEvent;
-        void OnRfidRead();
+        void OnRfidRead(RFIEDEventArgs e);
         void SetRfidId(int id);
 
     }

@@ -27,22 +27,17 @@ namespace ChargeStation_Handin2
         private int _oldId;
         private IDoor _door;
         private IRFIDReader _rfidReader;
-        private Display _display;
-        private IUsbCharger _usbCharger;
+        private IDisplay _display;
         private ILogFile _file;
-        private IDateTimeLog _dateTimeLog;
 
-        private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-
-        public StationControl()
+        public StationControl(IChargeControl chargeControl, IDoor door, IRFIDReader RFIDreader, IDisplay display, ILogFile logFile)
         {
-            _dateTimeLog = new DateTimeLogLog();
-            _file = new LogFile(logFile, _dateTimeLog);
-            _usbCharger = new UsbChargerSimulator();
-            _door = new Door();
-            _display = new Display();
-            _charger = new ChargeControl(_usbCharger, _display);
-            _rfidReader = new RFIEDReader(); 
+            _charger = chargeControl;
+            _door = door;
+            _rfidReader = RFIDreader;
+            _display = display;
+            _file = logFile;
+
             _state = LadeskabState.Available;
             _door.DoorStateChangedEvent += HandleDoorChangedEvent;
             _rfidReader.RFIDChangedEvent += RfidDetected;
@@ -119,6 +114,5 @@ namespace ChargeStation_Handin2
                     break;
             }
         }
-        // Her mangler de andre trigger handlere
     }
 }
