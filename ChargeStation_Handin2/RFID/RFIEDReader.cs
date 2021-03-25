@@ -4,13 +4,22 @@ using System.Text;
 
 namespace ChargeStation_Handin2.RFID
 {
-    class RFIEDReader : IRFIDReader
+    public class RFIEDReader : IRFIDReader
     {
-        public event EventHandler<int> RFIDChangedEvent;
+        public event EventHandler<RFIEDEventArgs> RFIDChangedEvent;
+        public int Id { get; set; }
 
-        public void OnRfidRead(int id)
+        public void SetRfidId(int id)                        
         {
-            RFIDChangedEvent?.Invoke(this, id);
+            Id = id;
+            OnRfidRead();
         }
+
+        public void OnRfidRead()
+        {
+            RFIDChangedEvent?.Invoke(this, new RFIEDEventArgs(){RFID = Id});
+        }
+
+        
     }
 }
