@@ -101,16 +101,17 @@ namespace ChargeStation_Handin2
             switch (_state)
             {
                 case LadeskabState.DoorOpen:
+                    if (!e.DoorState)
+                    {
+                        _display.Print("Indlæs RFID");
+                        _state = LadeskabState.Available;
+                    }
+                    break;
+                case LadeskabState.Available:
                     if (e.DoorState)
                     {
                         _display.Print("Tilslut telefon");
-                        _state = LadeskabState.Locked;
-                    }
-                    break;
-                case LadeskabState.Locked:
-                    if (e.DoorState == false)
-                    {
-                        _display.Print("Indlæs RFID");
+                        _state = LadeskabState.DoorOpen;
                     }
                     break;
             }
