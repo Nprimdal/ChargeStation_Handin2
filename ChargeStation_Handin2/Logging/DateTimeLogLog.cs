@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ChargeStation_Handin2.Logging
 {
-    public class DateTime : IDateTime
+    public class DateTimeLogLog : IDateTimeLog
     {
         public string GetDateTime()
         {

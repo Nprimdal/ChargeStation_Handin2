@@ -30,13 +30,15 @@ namespace ChargeStation_Handin2
         private Display _display;
         private IUsbCharger _usbCharger;
         private ILogFile _file;
+        private IDateTimeLog _dateTimeLog;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         // Her mangler constructor
         public StationControl()
         {
-            _file = new LogFile(logFile);
+            _dateTimeLog = new DateTimeLogLog();
+            _file = new LogFile(logFile, _dateTimeLog);
             _usbCharger = new UsbChargerSimulator();
             _door = new Door();
             _display = new Display();

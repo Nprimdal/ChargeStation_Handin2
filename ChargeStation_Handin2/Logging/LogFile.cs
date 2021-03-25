@@ -7,20 +7,20 @@ namespace ChargeStation_Handin2.Logging
 {
     public class LogFile : ILogFile
     {
-        private string _file;
-        private IDateTime _dateTime;
+        private string _fileName;
+        private IDateTimeLog _dateTimeLog;
 
-        public LogFile(string file)
+        public LogFile(string fileName, IDateTimeLog dateTimeLog)
         {
-            _dateTime = new DateTime();
-            _file = file;
+            _dateTimeLog = dateTimeLog;
+            _fileName = fileName;
         }
 
         public void LogDoorLocked(int id)
         {
-            using (var file = new StreamWriter(_file, true))
+            using (var file = new StreamWriter(_fileName, true))
             {
-                file.WriteLine(_dateTime.GetDateTime() + ": Skab låst med RFID: {0}", id);
+                file.WriteLine(_dateTimeLog.GetDateTime() + ", Skab låst med RFID, {0}", id);
             }
             
         }
@@ -29,9 +29,9 @@ namespace ChargeStation_Handin2.Logging
 
         public void LogDoorUnlocked(int id)
         {
-            using (var file = new StreamWriter(_file, true))
+            using (var file = new StreamWriter(_fileName, true))
             {
-                file.WriteLine(_dateTime.GetDateTime() + ": Skab låst op med RFID: {0}", id);
+                file.WriteLine(_dateTimeLog.GetDateTime() + ", Skab låst op med RFID, {0}", id);
             }
             
         }

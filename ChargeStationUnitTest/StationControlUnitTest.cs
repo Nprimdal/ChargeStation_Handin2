@@ -39,7 +39,7 @@ namespace ChargeStationUnitTest
         [Test]
         public void RFID_NotDetected()
         {
-            _rfidReader.OnRfidRead(0);
+            //_rfidReader.OnRfidRead(0);
 
             
         }
@@ -50,7 +50,7 @@ namespace ChargeStationUnitTest
         {
             id = 1;
             _chargeControl.IsConnected().Returns(true);
-            _rfidReader.RFIDChangedEvent += Raise.EventWith(new RFIEDEventArgs());
+            //_rfidReader.RFIDChangedEvent += Raise.EventWith(new RFIEDEventArgs());
 
             _door.Received(1).LockDoor();
             _chargeControl.Received(1).StartCharge();
