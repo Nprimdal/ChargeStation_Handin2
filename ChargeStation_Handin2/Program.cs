@@ -1,5 +1,6 @@
 ﻿    using System;
     using ChargeStation_Handin2;
+    using ChargeStation_Handin2.Disp;
     using ChargeStation_Handin2.DoorControl;
     using ChargeStation_Handin2.RFID;
 
@@ -9,7 +10,12 @@
         {
             IDoor door = new Door();
             IRFIDReader rfidReader = new RFIEDReader();
-				// Assemble your system here from all the classes
+            
+            
+            IDisplay display = new Display();
+            IUsbCharger usbCharger = new UsbChargerSimulator();
+            IChargeControl chargeControl = new ChargeControl(usbCharger, display);
+      
 
             bool finish = false;
             do

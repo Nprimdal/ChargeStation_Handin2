@@ -32,7 +32,6 @@ namespace ChargeStation_Handin2
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
-        // Her mangler constructor
         public StationControl()
         {
             _file = new LogFile(logFile);

@@ -15,7 +15,7 @@ namespace ChargeStation_Handin2
 
         void UnlockDoor();
 
-        void OnDoorOpen();
+        void OnDoorOpen(DoorEventArgs e);
 
 
 

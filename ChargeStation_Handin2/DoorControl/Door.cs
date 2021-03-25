@@ -10,19 +10,19 @@ namespace ChargeStation_Handin2.DoorControl
 
         public bool DoorOpen { get; private set; }
 
-        public bool DoorLock { get; private set; } //Døren er låst ved true og åben ved false
+        public bool DoorLock { get; private set; } 
 
         public void SetDoor(bool doorOpen)
         {
             if (doorOpen)
             {
                 DoorOpen = true;
-                OnDoorOpen();
+                OnDoorOpen(new DoorEventArgs(){DoorState = true});
             }
             else
             {
                 DoorOpen = false;
-                OnDoorOpen();
+                OnDoorOpen(new DoorEventArgs(){DoorState = false});
             }
         }
 
@@ -39,9 +39,14 @@ namespace ChargeStation_Handin2.DoorControl
         }
 
         
-        public void OnDoorOpen()
+        //public void OnDoorOpen()
+        //{
+        //    DoorStateChangedEvent?.Invoke(this, new DoorEventArgs() {DoorState = DoorOpen});
+        //}
+
+        public void OnDoorOpen(DoorEventArgs e)
         {
-            DoorStateChangedEvent?.Invoke(this, new DoorEventArgs() {DoorState = DoorOpen});
+            DoorStateChangedEvent?.Invoke(this,e);
         }
 
 
