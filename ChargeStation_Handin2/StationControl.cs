@@ -48,15 +48,16 @@ namespace ChargeStation_Handin2
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(object o, int id)
+        private void RfidDetected(object o, RFIEDEventArgs e)
         {
+            int id = e.RFID;
             switch (_state)
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
                     if (_charger.IsConnected())
                     {
-                        _door.LockDoor();
+                        _door.LockDoor();   
                         _charger.StartCharge();
                         _oldId = id;
                        _file.LogDoorLocked(id);
