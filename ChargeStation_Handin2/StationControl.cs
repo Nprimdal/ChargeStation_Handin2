@@ -36,7 +36,7 @@ namespace ChargeStation_Handin2
             _rfidReader = new RFIEDReader(); 
             _state = LadeskabState.Available;
             _rfidReader.RFIDChangedEvent += RfidDetected;
-
+            
         }
 
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
