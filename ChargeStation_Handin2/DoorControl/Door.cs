@@ -39,10 +39,6 @@ namespace ChargeStation_Handin2.DoorControl
         }
 
         
-        //public void OnDoorOpen()
-        //{
-        //    DoorStateChangedEvent?.Invoke(this, new DoorEventArgs() {DoorState = DoorOpen});
-        //}
 
         public void OnDoorOpen(DoorEventArgs e)
         {

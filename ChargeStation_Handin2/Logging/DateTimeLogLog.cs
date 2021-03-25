@@ -8,7 +8,7 @@ namespace ChargeStation_Handin2.Logging
     {
         public string GetDateTime()
         {
-            return System.DateTime.Now.ToString();
+            return DateTime.Now.ToString();
         }
     }
 }
