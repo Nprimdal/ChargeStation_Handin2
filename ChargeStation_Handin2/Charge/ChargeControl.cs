@@ -24,6 +24,7 @@ namespace ChargeStation_Handin2
             _usbCharger = usbCharger;
             _display = display;
             _state = ChargingState.NotCharging;
+            _usbCharger.CurrentValueEvent += HandleCurrentEventChanged;
 
         }
 
