@@ -26,11 +26,11 @@
                         break;
 
                     case 'O':
-                        door.OnDoorOpen();
+                        door.SetDoor(true);
                         break;
 
                     case 'C':
-                        door.OnDoorClosed();
+                        door.SetDoor(false);
                         break;
 
                     case 'R':

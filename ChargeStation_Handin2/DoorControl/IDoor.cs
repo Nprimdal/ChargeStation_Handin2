@@ -8,13 +8,15 @@ namespace ChargeStation_Handin2
     public interface IDoor
     {
         event EventHandler<DoorEventArgs> DoorStateChangedEvent;
+
+        void SetDoor(bool dooropen);
+
         void LockDoor();
 
         void UnlockDoor();
 
         void OnDoorOpen();
 
-        void OnDoorClosed();
 
 
     }

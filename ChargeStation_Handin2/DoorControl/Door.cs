@@ -8,25 +8,42 @@ namespace ChargeStation_Handin2.DoorControl
     {
         public event EventHandler<DoorEventArgs> DoorStateChangedEvent;
 
+        public bool DoorOpen { get; private set; }
+
+        public bool DoorLock { get; private set; } //Døren er låst ved true og åben ved false
+
+        public void SetDoor(bool doorOpen)
+        {
+            if (doorOpen)
+            {
+                DoorOpen = true;
+                OnDoorOpen();
+            }
+            else
+            {
+                DoorOpen = false;
+                OnDoorOpen();
+            }
+        }
+
         public void LockDoor()
         {
-            OnDoorClosed();
+            DoorLock = true;
+            DoorOpen = false;
         }
 
         public void UnlockDoor()
         {
-            OnDoorOpen();
+            DoorLock = false;
+            DoorOpen = true;
         }
 
+        
         public void OnDoorOpen()
         {
-            DoorStateChangedEvent?.Invoke(this, new DoorEventArgs() {DoorState = true});
+            DoorStateChangedEvent?.Invoke(this, new DoorEventArgs() {DoorState = DoorOpen});
         }
 
-        //public void OnDoorClosed()
-        //{
-        //    DoorStateChangedEvent?.Invoke(this, new DoorEventArgs(){DoorState = false});
-        //}
 
     }
 }
