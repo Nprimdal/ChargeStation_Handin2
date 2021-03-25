@@ -27,19 +27,22 @@ namespace ChargeStation_Handin2
         private IDoor _door;
         private IRFIDReader _rfidReader;
         private Display _display;
+        private IUsbCharger _usbCharger;
+        private ILogFile _file;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
         // Her mangler constructor
         public StationControl()
         {
+            _file = new LogFile(logFile);
+            _usbCharger = new UsbChargerSimulator();
             _door = new Door();
             _display = new Display();
-            _charger = new ChargeControl();
+            _charger = new ChargeControl(_usbCharger, _display);
             _rfidReader = new RFIEDReader(); 
             _state = LadeskabState.Available;
-            _door.DoorStateChangedEvent += DoorOpen;
-            _door.DoorStateChangedEvent += DoorClosed;
+            _door.DoorStateChangedEvent += HandleDoorChangedEvent;
             _rfidReader.RFIDChangedEvent += RfidDetected;
             
         }
@@ -56,17 +59,14 @@ namespace ChargeStation_Handin2
                         _door.LockDoor();
                         _charger.StartCharge();
                         _oldId = id;
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        }
+                       _file.LogDoorLocked(id);
 
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _display.Print("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.Print("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
                     break;
@@ -81,37 +81,29 @@ namespace ChargeStation_Handin2
                     {
                         _charger.StopCharge();
                         _door.UnlockDoor();
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        }
+                        _file.LogDoorUnlocked(id);
 
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                        _display.Print("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        _display.Print("Forkert RFID tag");
                     }
 
                     break;
             }
         }
 
-        private void DoorClosed(object o, EventArgs e)
-        {
-
-        }
-
-        private void DoorOpen(object o, DoorEventArgs e)
+       
+        private void HandleDoorChangedEvent(object o, DoorEventArgs e)
         {
             switch (_state)
             {
                 case LadeskabState.DoorOpen:
-                    if (e.DoorState == true)
+                    if (e.DoorState)
                     {
                         _display.Print("Tilslut telefon");
-                        _charger.IsConnected();
                         _state = LadeskabState.Locked;
                     }
                     break;

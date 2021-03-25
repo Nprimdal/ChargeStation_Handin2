@@ -23,10 +23,10 @@ namespace ChargeStation_Handin2.DoorControl
             DoorStateChangedEvent?.Invoke(this, new DoorEventArgs() {DoorState = true});
         }
 
-        public void OnDoorClosed()
-        {
-            DoorStateChangedEvent?.Invoke(this, new DoorEventArgs(){DoorState = false});
-        }
+        //public void OnDoorClosed()
+        //{
+        //    DoorStateChangedEvent?.Invoke(this, new DoorEventArgs(){DoorState = false});
+        //}
 
     }
 }
