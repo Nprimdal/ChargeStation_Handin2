@@ -44,7 +44,7 @@
                         string idString = Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
-                        rfidReader.OnRfidRead();
+                        rfidReader.SetRfidId(id);
                         break;
 
                     default:

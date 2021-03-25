@@ -12,12 +12,12 @@ namespace ChargeStation_Handin2.RFID
         public void SetRfidId(int id)                        
         {
             Id = id;
-            OnRfidRead();
+            OnRfidRead(new RFIEDEventArgs(){RFID = Id});
         }
 
-        public void OnRfidRead()
+        public void OnRfidRead(RFIEDEventArgs e)
         {
-            RFIDChangedEvent?.Invoke(this, new RFIEDEventArgs(){RFID = Id});
+            RFIDChangedEvent?.Invoke(this, e);
         }
 
         
