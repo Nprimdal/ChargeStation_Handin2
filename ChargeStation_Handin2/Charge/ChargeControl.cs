@@ -7,7 +7,7 @@ namespace ChargeStation_Handin2
     {
         private IUsbCharger _usbCharger;
         private IDisplay _display;
-        private bool IsCharging;
+        public bool IsCharging { get; set; }
 
 
         public ChargeControl(IUsbCharger usbCharger, IDisplay display)
@@ -48,7 +48,6 @@ namespace ChargeStation_Handin2
                     IsCharging = false;
                     _usbCharger.StopCharge();
                 }
-                
             }
             if (current > 5 && current <= 500)
             {
