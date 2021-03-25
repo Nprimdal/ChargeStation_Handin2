@@ -4,6 +4,7 @@ namespace ChargeStation_Handin2
 {
     public class ChargeControl : IChargeControl
     {
+        private IUsbCharger _usbCharger;
         public bool IsConnected()
         {
             throw new NotImplementedException();
