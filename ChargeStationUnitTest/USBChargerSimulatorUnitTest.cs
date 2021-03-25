@@ -13,6 +13,7 @@ namespace ChargeStationUnitTest
     {
 
         private UsbChargerSimulator _uut;
+
             [SetUp]
             public void Setup()
             {
