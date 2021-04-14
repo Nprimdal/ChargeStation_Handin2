@@ -2,6 +2,7 @@
     using ChargeStation_Handin2;
     using ChargeStation_Handin2.Disp;
     using ChargeStation_Handin2.DoorControl;
+    using ChargeStation_Handin2.Logging;
     using ChargeStation_Handin2.RFID;
 
     class Program
@@ -15,6 +16,9 @@
             IDisplay display = new Display();
             IUsbCharger usbCharger = new UsbChargerSimulator();
             IChargeControl chargeControl = new ChargeControl(usbCharger, display);
+            IDateTimeLog dateTime = new DateTimeLogLog();
+            ILogFile logFile = new LogFile("ChargeStationLogFile.txt",dateTime);
+            StationControl stationControl = new StationControl(chargeControl, door, rfidReader, display, logFile);
       
 
             bool finish = false;

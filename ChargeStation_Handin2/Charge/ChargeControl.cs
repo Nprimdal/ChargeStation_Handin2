@@ -16,7 +16,7 @@ namespace ChargeStation_Handin2
             _usbCharger = usbCharger;
             _display = display;
             _usbCharger.CurrentValueEvent += HandleCurrentEventChanged;
-
+          
         }
 
         public bool IsConnected()
@@ -32,8 +32,6 @@ namespace ChargeStation_Handin2
         public void StopCharge()
         {
             _usbCharger.StopCharge();
-            
-
         }
 
         public void HandleCurrentEventChanged(object s, CurrentEventArgs e)
@@ -51,8 +49,9 @@ namespace ChargeStation_Handin2
             }
             if (current > 5 && current <= 500)
             {
-                _display.Print("Telefonen oplader");
-                IsCharging = true;
+               _display.Print("Telefonen oplader");
+               IsCharging = true;
+
             }
             if (current > 500)
             {
@@ -60,7 +59,7 @@ namespace ChargeStation_Handin2
                 _usbCharger.StopCharge();
                 IsCharging = false;
             }
-            
+
         }
     }
 }

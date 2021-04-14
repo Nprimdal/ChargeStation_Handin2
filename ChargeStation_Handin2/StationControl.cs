@@ -54,12 +54,13 @@ namespace ChargeStation_Handin2
                     // Check for ladeforbindelse
                     if (_charger.IsConnected())
                     {
-                        _door.LockDoor();   
-                        _charger.StartCharge();
+                        _door.LockDoor();
                         _oldId = id;
                        _file.LogDoorLocked(id);
 
+                        _charger.StartCharge();
                         _display.Print("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+
                         _state = LadeskabState.Locked;
                     }
                     else
